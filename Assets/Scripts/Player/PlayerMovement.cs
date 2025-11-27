@@ -19,6 +19,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + moveInput * speed * Time.deltaTime);
+        // Movement.
+        rb.MovePosition(rb.position + moveInput.normalized * speed * Time.deltaTime);
+
+        // Rotation.
+        if (moveInput.sqrMagnitude > 0.01f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(moveInput);
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, 10f * Time.deltaTime));
+        }
     }
 }
