@@ -32,7 +32,7 @@ public class Inventory : MonoBehaviour
                 return true;
             }
         }
-
+        
         // If no stack found, add new slot
         if (slots.Count < maxSlots)
         {
